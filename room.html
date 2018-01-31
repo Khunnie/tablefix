@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="jack">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/datepicker.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+</head>
+<body>
+<title>固定表头和首列的表格</title>
+<style type="text/css">
+input,select{outline:none;}
+em{font-style: normal;}
+strong{font-weight: normal;}
+.wrap .table tr th,.wrap .table tr td{
+  line-height: 34px;
+}
+i{ margin-right: 5px;}
+.bgblack{background-color: #393939;}
+.bgblue{background-color: #6385a7;color: #fff;}
+#left_table2 tr:nth-child(odd){background:#dddddd;}
+#left_table2 tr:nth-child(even){background:#e0e9f0;}
+#right_div2 tr:nth-child(odd){background:#f4f4f4;}
+#right_div2::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+    background-color: #f5f5f5;
+}
+#right_div2::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(107,136,169,.3);
+    border-radius: 10px;
+    background-color: #eeeeee;
+}
+#right_div2::-webkit-scrollbar-thumb{
+    height: 8px;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 6px rgba(107,136,169,.3);
+    background-color: #6385a7;
+}
+.wrap{width: 90%;}
+.tab_Bar {
+  padding: 15px;
+  color: #393939;
+  font-size: 12px;
+}
+.tab_Bar label{
+ font-weight: normal;
+}
+.tab_Bar>div{
+  padding: 5px 0;
+}
+.input-wrap{
+  width: 130px;
+  padding: 6px 4px 6px;
+  color: #393939;
+  border: 1px solid #D5D5D5;
+  color: #666666;
+}
+.T-search{
+  background-color: #00a388;
+  color: #fff;
+}
+.T-search:hover{
+  color: #fff;
+}
+.table{
+  text-align: center;
+}
+.table span{
+  display: inline-block;
+  padding: 0 4px;
+}
+#left_div{
+    width:20%;
+    float: left;
+}
+#left_div1{
+    width: 100%;
+}
+#left_div2{
+  margin-top:-20px;
+  width: 100%;
+  height: 357px;
+  overflow: hidden;
+  color: #457092;
+  font-size:12px;
+}
+#left_div2 span{
+  color: #3b3f4b;
+}
+#left_table1 th{
+  color: #fff;
+  text-align: center;
+}
+#right_div{
+  float: left;
+  width: 80%;
+}
+#right_div3{
+  color: #1b5682;
+}
+#right_div1,#right_div3{
+  width: 100%;
+  overflow: hidden;
+}
+#right_divx{
+  width: 900px;
+}
+#right_div2{
+  width:100%;
+  height:357px;
+  overflow:hidden;
+  position: relative;
+  margin-top: -20px;
+}
+
+#right_table2{
+    min-width: 800px;
+    white-space:nowrap;
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#right_table1 th{
+  text-align:center;
+  color: #fff;
+  background-color: #415c79; 
+}
+#right_table2 td{
+    text-align:center;
+    color: #1c587d;
+    font-size: 12px;
+}
+.wrap #right_table3 td{
+  text-align: left;
+  line-height: 20px!important;
+  background-color: #dbe1e6;
+  border:1px solid #fff;
+}
+.table  .total{
+  display: block;
+}
+#left_div3 td{font-weight: bold;}
+.Roomnum{color: #ff4b4a;}
+.openNum{color: #00a388;}
+.price{color: #e27a3f;}
+</style>
+
+<div class="wrap">
+    <div class="tab_Bar col-md-12 col-sm-12">
+      <div class="col-md-5 col-sm-7 col-xs-8">
+        <label><i class="fa fa-calendar"></i>时间段</label>
+        <input type="text" name="" class="default-date-picker input-wrap"> ~
+        <input type="text" name="" class="default-date-picker input-wrap">
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-4">
+        <label><i class="fa fa-flag"></i>选择车队</label>
+        <select class="input-wrap">
+            <option>LKO5-6</option>
+            <option>MQO03-56</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-sm-8 col-xs-6">
+        <label><i class="fa fa-car"></i>选择车型</label>
+        <select class="input-wrap">
+            <option>单人房</option>
+            <option>双人间</option>
+            <option>标准间</option>
+            <option>豪华房</option>
+        </select>
+      </div>
+      <div class="col-md-1 col-sm-4 col-xs-12">
+        <button class="T-search btn btn-sm" name="search-submit"><i class="fa fa-search"></i>搜索</button>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <!-- 左边表格 -->
+      <div id="left_div">
+        <div id="left_div1">
+          <table id="left_table1" class="table table-bordered">
+            <tr>
+              <th class="bgblack"><i class="fa fa-table"></i>日期</th>
+            </tr>
+          </table>
+        </div>
+        <div id="left_div2">
+          <table id="left_table2" class="table table-bordered">
+            <tr>
+                <td>2017-12-25<span>星期一</span></td>
+            </tr>
+            <tr>
+                 <td>2017-12-26<span>星期二</span> </td>
+            </tr>
+            <tr>
+               <td>2017-12-27<span>星期三</span></td>
+            </tr>
+            <tr>
+                <td>2017-12-28<span>星期四</span></td>
+            </tr>
+            <tr>
+               <td>2017-12-29<span>星期五</span></td>
+            </tr>    
+             <tr>
+                <td>2017-12-30<span>星期六</span></td>
+             </tr>   
+            <tr>
+               <td>2017-12-31<span> 星期天</span></td>
+            </tr> 
+          </table>
+        </div>
+        <div id="left_div3">
+          <table id="left_table3" class="table table-bordered">
+            <tr>
+              <td class="bgblue">合计</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- 右边表格 -->
+      <div id="right_div">
+        <div id="right_div1">
+            <table id="right_table1" class="table table-bordered">
+              <tr>
+                <th>单人间</th>
+                <th>双人房</th>
+                <th>标准间</th>
+                <th>豪华房</th>
+              </tr>
+            </table>
+        </div>
+        <div id="right_div2">
+          <table id="right_table2" class="table table-bordered">
+            <tbody class="T-list">  
+             <!--  <tr>
+                  <td>
+                      <span>总数:<em class="price">1592</em></span>
+                      <span class="open">已预定数:<em class="openNum">185</em></span>
+                      <span class="remain">剩余数:<strong class="Roomnum">16</strong></span>
+                  </td>
+                 <td>
+                     <span>总数:<em class="price">1592</em></span>
+                      <span class="open">已预定数:<em class="openNum">185</em></span>
+                      <span class="remain">剩余数:<strong class="Roomnum">16</strong></span>
+                  </td>
+                  <td>
+                     <span>总数:<em class="price">1592</em></span>
+                      <span class="open">已预定数:<em class="openNum">185</em></span>
+                      <span class="remain">剩余数:<strong class="Roomnum">16</strong></span>
+                  </td>
+                 <td>
+                     <span>总数:<em class="price">1592</em></span>
+                      <span class="open">已预定数:<em class="openNum">185</em></span>
+                      <span class="remain">剩余数:<strong class="Roomnum">16</strong></span>
+                  </td>
+              </tr>          -->  
+            </tbody>
+          </table>
+        </div>
+        <div id="right_div3">
+            <table id="right_table3" class="table table-bordered">
+              <tr class="page-area">
+               
+              </tr>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
+<!--脚本--> 
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+$('.default-date-picker').datepicker({
+      format: 'yyyy-mm-dd ',
+      autoclose: true
+  });
+//固定和滚动
+var right_div2 = document.getElementById("right_div2");
+right_div2.onscroll = function(){
+    var right_div2_top = this.scrollTop;
+    var right_div2_left = this.scrollLeft;
+    document.getElementById("left_div2").scrollTop = right_div2_top;
+    document.getElementById("right_div1").scrollLeft = right_div2_left;
+    document.getElementById("right_div3").scrollLeft = right_div2_left;
+}
+//设置右边div宽度
+function Tab(){
+  var $tabWidth = $("#right_table2").outerWidth();
+  var $tabTd = $("#right_table2 td").outerHeight();
+  var $tabTdW = $("#right_table2 td").outerWidth();
+  var $tabTdH = $("#right_table3 td").outerHeight();
+  var $area = $("#left_div").outerWidth();
+  $("#right_table1,#right_table3").outerWidth($tabWidth);
+  $("#left_table2 td").outerHeight($tabTd)
+  $("#left_table3").outerHeight($tabTdH)
+  $(".page-area td").outerWidth($tabTdW)
+}
+  $(window).resize(function() {
+  Tab();
+  });
+  $("#right_div2").hover(function(){
+    $("#right_div2").css("overflow","auto")
+  },function(){
+    $("#right_div2").css("overflow","hidden")
+  })
+
+  var strList = "";
+      for(var i = 0;i<7;i++){
+        strList +='<tr>'
+                + '<td>'
+                    +'<span>总数:<em class="price">10</em></span>'
+                    +'<span>已订:<em class="openNum">1</em></span>'
+                    +'<span>剩余:<strong class="Roomnum">5</strong></span>'
+                +'</td>'
+                + '<td>'
+                    +'<span>总数:<em class="price">10</em></span>'
+                    +'<span>已订:<em class="openNum">1</em></span>'
+                    +'<span>剩余:<strong class="Roomnum">5</strong></span>'
+                +'</td>'
+                + '<td>'
+                    +'<span>总数:<em class="price">10</em></span>'
+                    +'<span>已订:<em class="openNum">1</em></span>'
+                    +'<span>剩余:<strong class="Roomnum">5</strong></span>'
+                +'</td>'
+                + '<td>'
+                    +'<span>总数:<em class="price">10</em></span>'
+                    +'<span>已订:<em class="openNum">1</em></span>'
+                    +'<span>剩余:<strong class="Roomnum">5</strong></span>'
+                +'</td>'
+                +'</tr>'
+      }
+  $(".T-list").html(strList)
+  
+ //总计 
+  var counthtml = "<td><span class='total'>总数:<em class='price'>10</em></span><span>已定:<em class='openNum'>1</em></span><span>剩余:<strong class='Roomnum'>5</strong></span></td><td><span class='total'>总数:<em class='price'>10</em></span><span>已定:<em class='openNum'>1</em></span><span>剩余:<strong class='Roomnum'>5</strong></span></td><td><span class='total'>总数:<em class='price'>10</em></span><span>已定:<em class='openNum'>1</em></span><span>剩余:<strong class='Roomnum'>5</strong></span></td><td><span class='total'>总数:<em class='price'>10</em></span><span>已定:<em class='openNum'>1</em></span><span>剩余:<strong class='Roomnum'>5</strong></span></td>"
+  $(".page-area").html( counthtml);
+ Tab();
+
+</script>
+</body>
+</html>
